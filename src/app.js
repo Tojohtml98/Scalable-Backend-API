@@ -1,6 +1,7 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./docs/swagger');
+const swaggerUiOptions = require('./docs/swagger-theme');
 const usersRouter = require('./routes/users.router');
 const petsRouter = require('./routes/pets.router');
 const mocksRouter = require('./routes/mocks.router');
@@ -14,7 +15,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions));
 
 app.use('/api/users', usersRouter);
 app.use('/api/pets', petsRouter);
